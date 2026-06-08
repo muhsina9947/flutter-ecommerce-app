@@ -1,6 +1,7 @@
 import 'package:ecommerce_openfashion/UI/bottom_nav.dart';
 import 'package:ecommerce_openfashion/UI/cart_screen.dart';
-import 'package:ecommerce_openfashion/UI/profile_screen.dart';
+import 'package:ecommerce_openfashion/UI/profile/profile_screen.dart';
+
 
 import 'package:ecommerce_openfashion/UI/wishlist_screen.dart';
 import 'package:flutter/material.dart';

@@ -183,14 +183,7 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Container(width: 24, height: 1, color: gold),
                               const SizedBox(width: 10),
-                              Text(
-                                'EXPLORE THE EDIT',
-                                style: GoogleFonts.inter(
-                                  fontSize: 8,
-                                  letterSpacing: 2.5,
-                                  color: Colors.white.withOpacity(.85),
-                                ),
-                              ),
+                              
                             ],
                           ),
                         ],
@@ -206,7 +199,7 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // left – heading
+                    
                     Expanded(
                       flex: 55,
                       child: Column(
@@ -336,7 +329,16 @@ class HomeScreen extends StatelessWidget {
                 category: 'TIMEPIECE',
                 price: '\$4,200',
               ),
+const SizedBox(height: 28),
 
+              
+              _accessoryCard(
+                context,
+                image: 'IMAGES/istockphoto-533714204-612x612.jpg',
+                title: 'The Chronos 01',
+                category: 'TIMEPIECE',
+                price: '\$4,200',
+              ),
               const SizedBox(height: 2),
 
               _accessoryCard(

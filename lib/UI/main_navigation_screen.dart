@@ -1,4 +1,5 @@
-import 'package:ecommerce_openfashion/UI/profile_screen.dart';
+import 'package:ecommerce_openfashion/UI/profile/profile_screen.dart';
+
 import 'package:flutter/material.dart';
 
 import 'HomeScreen.dart';

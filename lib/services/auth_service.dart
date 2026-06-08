@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-
   static final FirebaseAuth _auth =
       FirebaseAuth.instance;
 
@@ -11,4 +10,9 @@ class AuthService {
   // SAFE USER ID
   static String? get userId =>
       _auth.currentUser?.uid;
+
+  // SIGN OUT
+  static Future<void> signOut() async {
+    await _auth.signOut();
+  }
 }

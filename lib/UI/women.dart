@@ -43,7 +43,7 @@ class _WomenCollectionScreenState extends State<WomenCollectionScreen> {
     },
     {
       "image":
-          "IMAGES/Blackpink-Jennie-Chanel-goth-coquette-aesthetic-titkok-fashion-trend-2024-Paris-fashion-week-2-1-scaled.webp",
+      "IMAGES/Blackpink-Jennie-Chanel-goth-coquette-aesthetic-titkok-fashion-trend-2024-Paris-fashion-week-2-1-scaled.webp",
       "category": "READY-TO-WEAR",
       "name": "Ribbed Cashmere Turtleneck",
       "price": "\$890",
@@ -71,14 +71,21 @@ class _WomenCollectionScreenState extends State<WomenCollectionScreen> {
       "filter": "DRESSES",
     },
     {
-      "image": "IMAGES/Trousers.png",
+      "image": "IMAGES/51g8y-xHoDL._AC_UF894,1000_QL80_.jpg",
       "category": "DRESSES",
       "name": "Lace Atelier Evening Gown",
       "price": "\$7,200",
       "filter": "DRESSES",
     },
     {
-      "image": "IMAGES/Background (8).png",
+      "image": "IMAGES/jennie-2-1.jpg",
+      "category": "DRESSES",
+      "name": "Asymmetric Pleated Skirt",
+      "price": "\$1,890",
+      "filter": "DRESSES",
+    },
+    {
+      "image": "IMAGES/jennie-pictures-am9k0lvwt763kfqa.jpg",
       "category": "DRESSES",
       "name": "Asymmetric Pleated Skirt",
       "price": "\$1,890",
