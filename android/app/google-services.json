@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "955366303571",
+    "project_id": "e-commerce-d49d2",
+    "storage_bucket": "e-commerce-d49d2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955366303571:android:a2e443a06332259ba2e3a6",
+        "android_client_info": {
+          "package_name": "com.example.ecommerce_openfashion"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955366303571-3hega4buk0vp0tkknadr6jnhjhflue0j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ecommerce_openfashion",
+            "certificate_hash": "474802cccd70d1b7c844e13c962c1bff9bc5b046"
+          }
+        },
+        {
+          "client_id": "955366303571-n10i18g6prbalmvpbvs5mtrp6ekas2ll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANPBtOTa3aOFM7lLG0ZD4O-y7wyI2-VSE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "955366303571-n10i18g6prbalmvpbvs5mtrp6ekas2ll.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "955366303571-10suebd0gahhls42v9fpqltj3dp70sfg.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.ecommerceOpenfashion"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
