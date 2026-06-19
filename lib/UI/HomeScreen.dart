@@ -1,9 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_openfashion/UI/Notification/notification_screen.dart';
+import 'package:ecommerce_openfashion/UI/Search/SearchScreen.dart';
+import 'package:ecommerce_openfashion/UI/Search/all_products.dart';
+import 'package:ecommerce_openfashion/UI/Search/product_search.dart';
 import 'package:ecommerce_openfashion/UI/bottom_nav.dart';
 import 'package:ecommerce_openfashion/UI/cart_screen.dart';
 import 'package:ecommerce_openfashion/UI/profile/profile_screen.dart';
 
-
 import 'package:ecommerce_openfashion/UI/wishlist_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -26,6 +31,7 @@ class MainNavigationScreen extends StatefulWidget {
 class _MainNavigationScreenState extends State<MainNavigationScreen> {
   int _selectedIndex = 0;
   String _selectedCategory = "WOMEN";
+  String searchQuery = "";
 
   void navigateToDiscover(String category) {
     setState(() {
@@ -44,7 +50,7 @@ class _MainNavigationScreenState extends State<MainNavigationScreen> {
       const WishlistScreen(),
 
       const CartScreen(),
-      ProfileScreen()
+      ProfileScreen(),
     ];
 
     return Scaffold(
@@ -88,7 +94,31 @@ class HomeScreen extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Icon(Icons.search, size: 20, color: dark),
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const SearchScreen(),
+                                  ),
+                                );
+                              },
+                              child: IconButton(
+                                icon: const Icon(
+                                  Icons.search,
+                                  size: 26,
+                                  color: dark,
+                                ),
+                                onPressed: () {
+                                  showSearch(
+                                    context: context,
+                                    delegate: ProductSearchDelegate(
+                                      allProducts,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ),
                             Text(
                               "MAISON LUXE",
                               style: GoogleFonts.cormorantGaramond(
@@ -98,10 +128,63 @@ class HomeScreen extends StatelessWidget {
                                 color: dark,
                               ),
                             ),
-                            const Icon(
-                              Icons.notifications_none,
-                              size: 20,
-                              color: dark,
+                            GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (_) => const NotificationScreen(),
+                                  ),
+                                );
+                              },
+                              child: StreamBuilder<QuerySnapshot>(
+                                stream: FirebaseFirestore.instance
+                                    .collection('users')
+                                    .doc(FirebaseAuth.instance.currentUser!.uid)
+                                    .collection('notifications')
+                                    .where('isRead', isEqualTo: false)
+                                    .snapshots(),
+                                builder: (context, snapshot) {
+                                  final count = snapshot.data?.docs.length ?? 0;
+
+                                  return Stack(
+                                    clipBehavior: Clip.none,
+                                    children: [
+                                      const Icon(
+                                        Icons.notifications_outlined,
+                                        size: 26,
+                                        color: dark,
+                                      ),
+
+                                      if (count > 0)
+                                        Positioned(
+                                          right: -6,
+                                          top: -6,
+                                          child: Container(
+                                            padding: const EdgeInsets.all(4),
+                                            decoration: const BoxDecoration(
+                                              color: Colors.black,
+                                              shape: BoxShape.circle,
+                                            ),
+                                            constraints: const BoxConstraints(
+                                              minWidth: 18,
+                                              minHeight: 18,
+                                            ),
+                                            child: Text(
+                                              count > 99 ? '99+' : '$count',
+                                              textAlign: TextAlign.center,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 9,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  );
+                                },
+                              ),
                             ),
                           ],
                         ),
@@ -204,7 +287,6 @@ class HomeScreen extends StatelessWidget {
                                 bottom: BorderSide(color: dark, width: 1.0),
                               ),
                             ),
-                            
                           ),
                         ],
                       ),
@@ -430,12 +512,7 @@ class HomeScreen extends StatelessWidget {
             child: Stack(
               children: [
                 Positioned.fill(
-                  child: Image.asset(
-                    imagePath,
-                    fit: BoxFit.cover,
-                    errorBuilder: (context, error, stackTrace) =>
-                        const ImageErrorPlaceholder(),
-                  ),
+                  child: Image.asset(imagePath, fit: BoxFit.cover),
                 ),
                 Positioned(
                   top: 10,

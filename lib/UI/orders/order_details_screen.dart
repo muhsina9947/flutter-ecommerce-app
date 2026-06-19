@@ -22,14 +22,14 @@ class OrderDetailsScreen extends StatelessWidget {
       body: ListView(
         padding: const EdgeInsets.all(20),
         children: [
-          // Status timeline
+         
           const LuxeSectionLabel('ORDER STATUS'),
           const SizedBox(height: 20),
           _statusTimeline(order.status),
 
           const SizedBox(height: 28),
 
-          // Items
+       
           _card(
             label: 'ITEMS ORDERED',
             child: Column(
@@ -41,7 +41,7 @@ class OrderDetailsScreen extends StatelessWidget {
 
           const SizedBox(height: 14),
 
-          // Delivery address
+       
           _card(
             label: 'DELIVERY ADDRESS',
             child: Column(
@@ -63,7 +63,7 @@ class OrderDetailsScreen extends StatelessWidget {
 
           const SizedBox(height: 14),
 
-          // Payment
+        
           _card(
             label: 'PAYMENT METHOD',
             child: Row(
@@ -78,7 +78,7 @@ class OrderDetailsScreen extends StatelessWidget {
 
           const SizedBox(height: 14),
 
-          // Price summary
+          
           _card(
             label: 'PRICE SUMMARY',
             child: Column(

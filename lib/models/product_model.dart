@@ -15,7 +15,7 @@ class ProductModel {
     required this.description,
   });
 
-  // TO MAP
+ 
   Map<String, dynamic> toMap() {
     return {
       "productId": productId,
@@ -27,7 +27,7 @@ class ProductModel {
     };
   }
 
-  // FROM MAP
+  
   factory ProductModel.fromMap(
     Map<String, dynamic> map,
   ) {

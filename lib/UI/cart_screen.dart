@@ -1,4 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_openfashion/UI/HomeScreen.dart';
+import 'package:ecommerce_openfashion/UI/wishlist_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -93,29 +95,46 @@ class CartScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 18,
-                      vertical: 16,
+                  Container(
+                    height: 62,
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    decoration: const BoxDecoration(
+                      color: bg,
+                      border: Border(
+                        bottom: BorderSide(color: Color(0xffE5E0D9), width: 1),
+                      ),
                     ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        const Icon(Icons.search, size: 22, color: dark),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.arrow_back_ios,
+                            size: 20,
+                            color: dark,
+                          ),
+                          onPressed: () {
+                            Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                builder: (_) => const MainNavigationScreen(),
+                              ),
+                              (route) => false,
+                            );
+                          },
+                        ),
+
                         Text(
                           "MAISON LUXE",
                           style: GoogleFonts.cormorantGaramond(
-                            fontSize: 20,
-                            letterSpacing: 4,
-                            fontWeight: FontWeight.w600,
+                            fontSize: 22,
+                            letterSpacing: 5,
                             color: dark,
+                            fontWeight: FontWeight.w500,
                           ),
                         ),
-                        const Icon(
-                          Icons.notifications_none,
-                          size: 22,
-                          color: dark,
-                        ),
+
+                       
                       ],
                     ),
                   ),

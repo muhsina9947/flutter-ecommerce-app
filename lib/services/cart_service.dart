@@ -83,7 +83,7 @@ class CartService {
         .delete();
   }
 
-  // INCREASE QUANTITY
+  
   static Future<void> increaseQuantity(
     String productId,
     int quantity,
@@ -100,7 +100,7 @@ class CartService {
       "quantity": quantity + 1,
     });
   }
-// DECREASE QUANTITY
+
   static Future<void> decreaseQuantity(
     String productId,
     int quantity,

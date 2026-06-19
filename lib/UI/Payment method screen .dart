@@ -1,5 +1,3 @@
-import 'package:ecommerce_openfashion/UI/bottom_nav.dart';
-import 'package:ecommerce_openfashion/UI/discover_screen.dart';
 import 'package:ecommerce_openfashion/UI/theme.dart';
 import 'package:ecommerce_openfashion/widgets/Luxe%20widgets.dart';
 import 'package:flutter/material.dart';
@@ -132,7 +130,7 @@ class _PaymentMethodScreenState extends State<PaymentMethodScreen> {
                                     ],
                                   ],
                                 ),
-                                const SizedBox(height: 4),
+                                const SizedBox(height: 6),
                                 Text(method.subtitle,
                                     style:
                                         AppTextStyles.body(11, color: light)),

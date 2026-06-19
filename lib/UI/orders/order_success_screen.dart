@@ -1,4 +1,5 @@
 import 'package:ecommerce_openfashion/UI/theme.dart';
+import 'package:ecommerce_openfashion/services/Notification_%20Service.dart';
 import 'package:ecommerce_openfashion/widgets/Luxe%20widgets.dart';
 import 'package:flutter/material.dart';
 
@@ -24,18 +25,33 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen>
   late Animation<double> _fadeAnim;
 
   @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 800),
-    );
-    _scaleAnim = CurvedAnimation(
-        parent: _controller, curve: const Interval(0, 0.6, curve: Curves.elasticOut));
-    _fadeAnim = CurvedAnimation(
-        parent: _controller, curve: const Interval(0.4, 1, curve: Curves.easeIn));
-    _controller.forward();
-  }
+  @override
+@override
+void initState() {
+  super.initState();
+
+  _controller = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 800),
+  );
+
+  _scaleAnim = CurvedAnimation(
+    parent: _controller,
+    curve: const Interval(0, 0.6, curve: Curves.elasticOut),
+  );
+
+  _fadeAnim = CurvedAnimation(
+    parent: _controller,
+    curve: const Interval(0.4, 1, curve: Curves.easeIn),
+  );
+
+  _controller.forward();
+
+  NotificationService.addNotification(
+    title: "✨ Order Confirmed",
+    body: "Your Maison Luxe order has been confirmed.",
+  );
+}
 
   @override
   void dispose() {

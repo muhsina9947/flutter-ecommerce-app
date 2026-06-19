@@ -1,3 +1,6 @@
+import 'package:ecommerce_openfashion/UI/LoginScreen.dart';
+import 'package:ecommerce_openfashion/UI/Notification/notification_screen.dart';
+import 'package:ecommerce_openfashion/UI/cart_screen.dart';
 import 'package:ecommerce_openfashion/UI/theme.dart';
 import 'package:ecommerce_openfashion/UI/wishlist_screen.dart';
 import 'package:ecommerce_openfashion/widgets/Luxe%20widgets.dart';
@@ -12,6 +15,7 @@ const Color bg = Color(0xffF5F1EB);
 const Color dark = Color(0xff161616);
 const Color light = Color(0xff8E8A84);
 const Color gold = Color(0xffB79A63);
+
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
@@ -25,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
         : 'ML';
 
     return Scaffold(
-      backgroundColor: bg,
+      backgroundColor: Colors.white,
       appBar: const LuxeAppBar(title: 'PROFILE'),
       body: ListView(
         padding: const EdgeInsets.all(20),
@@ -34,9 +38,16 @@ class ProfileScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(24),
             decoration: BoxDecoration(
-              color: surface,
+              color: Colors.white,
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: const Color(0xffD6D0C5)),
+              border: Border.all(color: const Color(0xff161616)),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.03),
+                  blurRadius: 12,
+                  offset: const Offset(0, 4),
+                ),
+              ],
             ),
             child: Row(
               children: [
@@ -44,9 +55,16 @@ class ProfileScreen extends StatelessWidget {
                   width: 72,
                   height: 72,
                   decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: gold.withOpacity(0.15),
-                    border: Border.all(color: gold, width: 1.5),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(color: const Color(0xff161616)),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(0.03),
+                        blurRadius: 12,
+                        offset: const Offset(0, 4),
+                      ),
+                    ],
                   ),
                   child: Center(
                     child: Text(
@@ -62,18 +80,29 @@ class ProfileScreen extends StatelessWidget {
                     children: [
                       Text(name, style: AppTextStyles.display(26)),
                       const SizedBox(height: 4),
-                      Text(email,
-                          style: AppTextStyles.body(12, color: light)),
+                      Text(email, style: AppTextStyles.body(12, color: light)),
                       const SizedBox(height: 8),
                       Container(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
-                        decoration: BoxDecoration(
-                          color: gold.withOpacity(0.1),
-                          borderRadius: BorderRadius.circular(20),
+                          horizontal: 10,
+                          vertical: 4,
                         ),
-                        child: Text('MAISON MEMBER',
-                            style: AppTextStyles.label(8, spacing: 1.5)),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          border: Border.all(color: const Color(0xff161616)),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.03),
+                              blurRadius: 12,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Text(
+                          'MAISON MEMBER',
+                          style: AppTextStyles.label(8, spacing: 1.5),
+                        ),
                       ),
                     ],
                   ),
@@ -106,22 +135,34 @@ class ProfileScreen extends StatelessWidget {
               MaterialPageRoute(builder: (_) => const AddressScreen()),
             ),
           ),
-                   _menuItem(
-  context,
-  icon: Icons.favorite_border_outlined,
-  label: 'Wishlist',
-  subtitle: 'Your curated favourites',
-  onTap: () {
-    Navigator.pop(context);
+          _menuItem(
+            context,
+            icon: Icons.favorite_border_outlined,
+            label: 'Wishlist',
+            subtitle: 'Your curated favourites',
+            onTap: () {
+              Navigator.pop(context);
 
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const WishlistScreen(),
-      ),
-    );
-  },
-),
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const WishlistScreen()),
+              );
+            },
+          ),
+          _menuItem(
+            context,
+            icon: Icons.favorite_border_outlined,
+            label: 'Bag',
+            subtitle: 'Your curated favourites',
+            onTap: () {
+              Navigator.pop(context);
+
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const CartScreen()),
+              );
+            },
+          ),
 
           const SizedBox(height: 28),
           const LuxeSectionLabel('PREFERENCES'),
@@ -131,15 +172,72 @@ class ProfileScreen extends StatelessWidget {
             context,
             icon: Icons.notifications_none_outlined,
             label: 'Notifications',
-            subtitle: 'Manage your alerts',
-            onTap: () {},
+            subtitle: 'View all updates',
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const NotificationScreen()),
+              );
+            },
           ),
           _menuItem(
             context,
             icon: Icons.help_outline_rounded,
             label: 'Help & Support',
             subtitle: 'Get assistance',
-            onTap: () {},
+            onTap: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  title: Text(
+                    'Help & Support',
+                    style: AppTextStyles.display(24),
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Need assistance?',
+                        style: AppTextStyles.body(14, weight: FontWeight.w600),
+                      ),
+                      const SizedBox(height: 12),
+
+                      Text(
+                        'Email: support@maisonluxe.com',
+                        style: AppTextStyles.body(12),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        'Phone: +91 98765 43210',
+                        style: AppTextStyles.body(12),
+                      ),
+
+                      const SizedBox(height: 8),
+
+                      Text(
+                        'Working Hours:\nMon - Sat | 9:00 AM - 6:00 PM',
+                        style: AppTextStyles.body(12),
+                      ),
+                    ],
+                  ),
+                  actions: [
+                    TextButton(
+                      onPressed: () => Navigator.pop(context),
+                      child: Text(
+                        'CLOSE',
+                        style: AppTextStyles.label(10, color: gold),
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            },
           ),
 
           const SizedBox(height: 32),
@@ -170,39 +268,50 @@ class ProfileScreen extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: const EdgeInsets.only(bottom: 10),
+        margin: const EdgeInsets.only(bottom: 12),
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: surface,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: const Color(0xffD6D0C5)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: const Color(0xff161616)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           children: [
             Container(
-              width: 42,
-              height: 42,
+              width: 46,
+              height: 46,
               decoration: BoxDecoration(
-                color: gold.withOpacity(0.1),
-                borderRadius: BorderRadius.circular(12),
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(14),
+                border: Border.all(color: const Color(0xff161616)),
               ),
-              child: Icon(icon, color: gold, size: 20),
+              child: Icon(icon, color: dark, size: 21),
             ),
-            const SizedBox(width: 14),
+
+            const SizedBox(width: 16),
+
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(label,
-                      style: AppTextStyles.body(14, weight: FontWeight.w600)),
-                  const SizedBox(height: 2),
-                  Text(subtitle,
-                      style: AppTextStyles.body(11, color: light)),
+                  Text(
+                    label,
+                    style: AppTextStyles.body(14, weight: FontWeight.w600),
+                  ),
+                  const SizedBox(height: 3),
+                  Text(subtitle, style: AppTextStyles.body(11, color: light)),
                 ],
               ),
             ),
-            const Icon(Icons.arrow_forward_ios,
-                size: 12, color: light),
+
+            const Icon(Icons.arrow_forward_ios_rounded, size: 12, color: light),
           ],
         ),
       ),
@@ -215,18 +324,30 @@ class ProfileScreen extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
-          color: error.withOpacity(0.06),
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(color: error.withOpacity(0.25)),
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(color: const Color(0xff161616)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.03),
+              blurRadius: 12,
+              offset: const Offset(0, 4),
+            ),
+          ],
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Icon(Icons.logout_rounded, color: error, size: 20),
             const SizedBox(width: 10),
-            Text('Sign Out',
-                style: AppTextStyles.body(14,
-                    color: error, weight: FontWeight.w600)),
+            Text(
+              'Sign Out',
+              style: AppTextStyles.body(
+                14,
+                color: error,
+                weight: FontWeight.w600,
+              ),
+            ),
           ],
         ),
       ),
@@ -238,8 +359,7 @@ class ProfileScreen extends StatelessWidget {
       context: context,
       builder: (_) => AlertDialog(
         backgroundColor: bg,
-        shape:
-            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         title: Text('Sign Out', style: AppTextStyles.display(28)),
         content: Text(
           'Are you sure you want to sign out of Maison Luxe?',
@@ -248,19 +368,24 @@ class ProfileScreen extends StatelessWidget {
         actions: [
           TextButton(
             onPressed: () => Navigator.pop(context),
-            child: Text('CANCEL',
-                style: AppTextStyles.label(11, color: light)),
+            child: Text('CANCEL', style: AppTextStyles.label(11, color: light)),
           ),
           TextButton(
             onPressed: () async {
               await AuthService.signOut();
+
               if (context.mounted) {
-                Navigator.of(context)
-                    .popUntil((route) => route.isFirst);
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  MaterialPageRoute(builder: (_) => const LoginScreen()),
+                  (route) => false,
+                );
               }
             },
-            child: Text('SIGN OUT',
-                style: AppTextStyles.label(11, color: error)),
+            child: Text(
+              'SIGN OUT',
+              style: AppTextStyles.label(11, color: error),
+            ),
           ),
         ],
       ),

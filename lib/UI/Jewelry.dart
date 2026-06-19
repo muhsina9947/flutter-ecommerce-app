@@ -1,3 +1,5 @@
+import 'package:ecommerce_openfashion/UI/HomeScreen.dart';
+import 'package:ecommerce_openfashion/UI/cart_screen.dart';
 import 'package:ecommerce_openfashion/services/cart_service.dart';
 import 'package:ecommerce_openfashion/services/wishlist_service.dart';
 import 'package:flutter/material.dart';
@@ -33,53 +35,53 @@ class _JewelryDetailScreenState extends State<JewelryDetailScreen> {
 
   final List<Map<String, String>> _editorialItems = const [
     {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 11_51_55 AM.png",
-      "label": "RINGS",
-      "name": "Minimalist Gold Drop",
-      "price": "\$1,460",
-    },
-    {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 11_53_51 AM.png",
-      "label": "RINGS",
-      "name": "Signet du Paris",
-      "price": "\$1,280",
-    },
-    {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 12_23_06 PM.png",
-      "label": "WATCHES",
-      "name": "Chronos Ivory I",
-      "price": "\$8,600",
-    },
-    {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 11_50_14 AM.png",
-      "label": "BRACELETS",
-      "name": "Sculpture Cuff",
-      "price": "\$3,200",
-    },
-    {
-      "image": "IMAGES/CHAIN3.png",
-      "label": "RINGS",
-      "name": "The Pavé Band",
-      "price": "\$13,500",
-    },
-    {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 11_33_59 AM.png",
-      "label": "RINGS",
-      "name": "Diamond Solitaire Studs",
-      "price": "\$14,600",
-    },
-    {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 12_17_57 PM.png",
-      "label": "NECKLACES",
-      "name": "Heritage Link Bracelet",
-      "price": "\$4,200",
-    },
-    {
-      "image": "IMAGES/ChatGPT Image May 21, 2026, 11_44_48 AM.png",
-      "label": "NECKLACES",
-      "name": "Heritage Link Bracelet",
-      "price": "\$4,200",
-    },
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 11_51_55 AM.png",
+  "category": "RINGS",
+  "name": "Minimalist Gold Drop",
+  "price": "\$1,460",
+},
+{
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 11_53_51 AM.png",
+  "category": "RINGS",
+  "name": "Signet du Paris",
+  "price": "\$1,280",
+},
+{
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 12_23_06 PM.png",
+  "category": "WATCHES",
+  "name": "Chronos Ivory I",
+  "price": "\$8,600",
+},
+{
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 11_50_14 AM.png",
+  "category": "BRACELETS",
+  "name": "Sculpture Cuff",
+  "price": "\$3,200",
+},
+{
+  "image": "IMAGES/CHAIN3.png",
+  "category": "RINGS",
+  "name": "The Pavé Band",
+  "price": "\$13,500",
+},
+{
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 11_33_59 AM.png",
+  "category": "RINGS",
+  "name": "Diamond Solitaire Studs",
+  "price": "\$14,600",
+},
+{
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 12_17_57 PM.png",
+  "category": "NECKLACES",
+  "name": "Heritage Link Bracelet",
+  "price": "\$4,200",
+},
+{
+  "image": "IMAGES/ChatGPT Image May 21, 2026, 11_44_48 AM.png",
+  "category": "NECKLACES",
+  "name": "Heritage Link Bracelet",
+  "price": "\$4,200",
+},
   ];
 
   @override
@@ -133,10 +135,22 @@ class _JewelryDetailScreenState extends State<JewelryDetailScreen> {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: const Icon(Icons.arrow_back_ios, size: 18, color: dark),
-          ),
+           GestureDetector(
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const MainNavigationScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 18,
+                      color: dark,
+                    ),
+                  ),
           Text(
             "MAISON LUXE",
             style: GoogleFonts.cormorantGaramond(
@@ -146,7 +160,21 @@ class _JewelryDetailScreenState extends State<JewelryDetailScreen> {
               color: dark,
             ),
           ),
-          const Icon(Icons.shopping_bag_outlined, size: 18, color: dark),
+          GestureDetector(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const CartScreen(),
+      ),
+    );
+  },
+  child: const Icon(
+    Icons.shopping_bag_outlined,
+    size: 18,
+    color: dark,
+  ),
+),
         ],
       ),
     );
@@ -259,6 +287,7 @@ class _JewelryDetailScreenState extends State<JewelryDetailScreen> {
                 elevation: 0,
               ),
               onPressed: () async {
+                
                 await CartService.addToCart(
                   productId: widget.name,
                   image: widget.image,
@@ -282,7 +311,7 @@ class _JewelryDetailScreenState extends State<JewelryDetailScreen> {
                     content: Row(
                       children: [
                         const Icon(
-                          Icons.check_circle_outline,
+                          Icons.shopping_bag_outlined,
                           color: Color(0xffB79A63),
                         ),
 
@@ -677,7 +706,7 @@ class _EditorialCardState extends State<_EditorialCard> {
                           backgroundColor: dark,
                           behavior: SnackBarBehavior.floating,
                           content: Text(
-                            "Saved To Your Collection",
+                            "Your Collection",
                             style: GoogleFonts.cormorantGaramond(
                               color: Colors.white,
                               fontSize: 18,

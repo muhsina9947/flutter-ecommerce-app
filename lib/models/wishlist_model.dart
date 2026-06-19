@@ -14,7 +14,7 @@ class WishlistModel {
     required this.label,
   });
 
-  // TO MAP
+  
   Map<String, dynamic> toMap() {
     return {
       "productId": productId,
@@ -25,7 +25,6 @@ class WishlistModel {
     };
   }
 
-  // FROM MAP
   factory WishlistModel.fromMap(
     Map<String, dynamic> map,
   ) {

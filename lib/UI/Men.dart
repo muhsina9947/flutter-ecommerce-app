@@ -1,3 +1,5 @@
+import 'package:ecommerce_openfashion/UI/HomeScreen.dart';
+import 'package:ecommerce_openfashion/UI/cart_screen.dart';
 import 'package:ecommerce_openfashion/services/cart_service.dart';
 import 'package:ecommerce_openfashion/services/wishlist_service.dart';
 import 'package:flutter/material.dart';
@@ -94,7 +96,22 @@ class HomeScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    const Icon(Icons.menu, size: 20, color: dark),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const MainNavigationScreen(),
+                          ),
+                          (route) => false,
+                        );
+                      },
+                      child: const Icon(
+                        Icons.arrow_back_ios_new,
+                        size: 18,
+                        color: dark,
+                      ),
+                    ),
                     Text(
                       'MAISON LUXE',
                       style: GoogleFonts.cormorantGaramond(
@@ -104,10 +121,18 @@ class HomeScreen extends StatelessWidget {
                         color: dark,
                       ),
                     ),
-                    const Icon(
-                      Icons.shopping_bag_outlined,
-                      size: 20,
-                      color: dark,
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => const CartScreen()),
+                        );
+                      },
+                      child: const Icon(
+                        Icons.shopping_bag_outlined,
+                        size: 18,
+                        color: dark,
+                      ),
                     ),
                   ],
                 ),
@@ -116,7 +141,7 @@ class HomeScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () => _toDetail(
                   context,
-                  image: 'IMAGES/103106276.webp',
+                  image: 'IMAGES/untitled-design-2023-08-08t161947-774.webp',
                   title: 'Architectural Mantle',
                   category: 'LUXURY EDIT',
                   price: '\$2,800',
@@ -128,8 +153,8 @@ class HomeScreen extends StatelessWidget {
                     Hero(
                       tag: 'IMAGES/6171b6b360c86ce09212f4dda8e6c27b.jpg',
                       child: Image.asset(
-                        'IMAGES/103106276.webp',
-                        height: 420,
+                        'IMAGES/untitled-design-2023-08-08t161947-774.webp',
+                        height: 450,
                         width: double.infinity,
                         fit: BoxFit.cover,
                       ),
@@ -170,7 +195,7 @@ class HomeScreen extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'ARCHITECTURAL\nMANTLE',
+                            "THE MAISON MAN",
                             style: GoogleFonts.cormorantGaramond(
                               fontSize: 42,
                               height: .95,
@@ -183,7 +208,6 @@ class HomeScreen extends StatelessWidget {
                             children: [
                               Container(width: 24, height: 1, color: gold),
                               const SizedBox(width: 10),
-                              
                             ],
                           ),
                         ],
@@ -193,13 +217,11 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
 
-              
               Padding(
                 padding: const EdgeInsets.fromLTRB(18, 48, 18, 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    
                     Expanded(
                       flex: 55,
                       child: Column(
@@ -247,15 +269,12 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 32),
 
-           
               _featuredProductCard(context),
 
               const SizedBox(height: 56),
 
-              
               _heritageSection(context),
 
-             
               Container(
                 width: double.infinity,
                 color: dark,
@@ -292,7 +311,6 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 56),
 
-           
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 18),
                 child: Column(
@@ -321,7 +339,6 @@ class HomeScreen extends StatelessWidget {
 
               const SizedBox(height: 28),
 
-              
               _accessoryCard(
                 context,
                 image: 'IMAGES/Luxury Watch.png',
@@ -329,9 +346,8 @@ class HomeScreen extends StatelessWidget {
                 category: 'TIMEPIECE',
                 price: '\$4,200',
               ),
-const SizedBox(height: 28),
+              const SizedBox(height: 28),
 
-              
               _accessoryCard(
                 context,
                 image: 'IMAGES/istockphoto-533714204-612x612.jpg',
@@ -358,6 +374,21 @@ const SizedBox(height: 28),
                 category: 'TEXTILE',
                 price: '\$450',
               ),
+              _accessoryCard(
+                context,
+                image: 'IMAGES/vvvvv.jpg',
+                title: 'Chocolate Velvet Blazer',
+                category: 'APPAREL',
+                price: '\$650',
+              ),
+
+              _accessoryCard(
+                context,
+                image: 'IMAGES/vvvv.jpg',
+                title: 'Rockstar Chic Leather Outfit Set',
+                category: 'FULL SET',
+                price: '\$645',
+              ),
 
               const SizedBox(height: 80),
             ],
@@ -367,9 +398,8 @@ const SizedBox(height: 28),
     );
   }
 
-  
   Widget _featuredProductCard(BuildContext context) {
-    const img = 'IMAGES/103106276.webp';
+    const img = 'IMAGES/v.jpg';
     const title = 'Precision Wool Blazer';
     const category = 'TAILORING';
     const price = '\$3,200';
@@ -496,7 +526,6 @@ const SizedBox(height: 28),
     );
   }
 
-  
   Widget _heritageSection(BuildContext context) {
     const img = 'IMAGES/103106276.webp';
     const title = 'Architectural Mantle';
@@ -562,7 +591,6 @@ const SizedBox(height: 28),
           ],
         ),
 
-        // description + badges + price + button
         Container(
           color: const Color(0xffEFE9E1),
           padding: const EdgeInsets.all(18),
@@ -634,7 +662,6 @@ const SizedBox(height: 28),
     );
   }
 
- 
   Widget _accessoryCard(
     BuildContext context, {
     required String image,
@@ -775,7 +802,6 @@ const SizedBox(height: 28),
     );
   }
 
- 
   Widget _bagBtn(
     BuildContext ctx,
     String image,
@@ -793,8 +819,9 @@ const SizedBox(height: 28),
           label: category,
           size: 'M',
         );
-        if (ctx.mounted)
-          _snack(ctx, Icons.shopping_bag_outlined, 'Added To Shopping Bag');
+        if (ctx.mounted) {
+          _snack(ctx, Icons.check_circle_outline, 'Added To Shopping Bag');
+        }
       },
       child: Container(
         height: 44,
@@ -815,7 +842,6 @@ const SizedBox(height: 28),
     );
   }
 
- 
   Widget _featureRow(IconData icon, String title, String subtitle) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -851,7 +877,6 @@ const SizedBox(height: 28),
     );
   }
 }
-
 
 class ProductDetailsScreen extends StatelessWidget {
   final String image;

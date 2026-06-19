@@ -1,4 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce_openfashion/UI/HomeScreen.dart';
+import 'package:ecommerce_openfashion/UI/cart_screen.dart';
+import 'package:ecommerce_openfashion/UI/profile/profile_screen.dart';
 import 'package:ecommerce_openfashion/services/cart_service.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -25,7 +28,22 @@ class WishlistScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Icon(Icons.search, size: 22, color: dark),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (_) => const MainNavigationScreen(),
+                        ),
+                        (route) => false,
+                      );
+                    },
+                    child: const Icon(
+                      Icons.arrow_back_ios_new,
+                      size: 18,
+                      color: dark,
+                    ),
+                  ),
                   Text(
                     "MAISON LUXE",
                     style: GoogleFonts.cormorantGaramond(
@@ -35,7 +53,21 @@ class WishlistScreen extends StatelessWidget {
                       color: dark,
                     ),
                   ),
-                  const Icon(Icons.notifications_none, size: 22, color: dark),
+                GestureDetector(
+  onTap: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => const CartScreen(),
+      ),
+    );
+  },
+  child: const Icon(
+    Icons.shopping_bag_outlined,
+    size: 18,
+    color: dark,
+  ),
+),
                 ],
               ),
             ),

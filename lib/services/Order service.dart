@@ -15,19 +15,18 @@ class OrderService {
       .doc(AuthService.userId)
       .collection('cart');
 
-  /// Places an order, saves to Firestore, clears cart.
-  /// Returns the generated order ID.
+ 
   static Future<String> placeOrder({
     required AddressModel address,
     required String paymentMethod,
   }) async {
-    // Fetch cart
+   
     final cartSnap = await _cartRef().get();
     final cartDocs = cartSnap.docs;
 
     if (cartDocs.isEmpty) throw Exception('Cart is empty');
 
-    // Build order items
+    
     final items = cartDocs.map((doc) {
       final data = doc.data() as Map<String, dynamic>;
       return OrderItem(
@@ -38,7 +37,7 @@ class OrderService {
       );
     }).toList();
 
-    // Calculate totals
+    
     double subtotal = 0;
     for (final item in items) {
       final cleaned =
@@ -48,9 +47,9 @@ class OrderService {
     const shipping = 120.0;
     final total = subtotal + shipping;
 
-    // Build order
+   
     final orderData = OrderModel(
-      id: '', // Firestore generates the ID
+      id: '',
       items: items,
       subtotal: subtotal,
       shipping: shipping,
@@ -61,10 +60,10 @@ class OrderService {
       createdAt: DateTime.now(),
     );
 
-    // Save order
+   
     final docRef = await _ordersRef().add(orderData.toMap());
 
-    // Clear cart
+    
     final batch = FirebaseFirestore.instance.batch();
     for (final doc in cartDocs) {
       batch.delete(doc.reference);

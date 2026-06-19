@@ -18,7 +18,7 @@ class WishlistService {
       return "User not logged in";
     }
 
-    // Check if product already exists
+  
     final existing = await _firestore
         .collection("users")
         .doc(uid)
@@ -30,7 +30,7 @@ class WishlistService {
       return "Already in Wishlist";
     }
 
-    // Add new item
+   
     await _firestore
         .collection("users")
         .doc(uid)
